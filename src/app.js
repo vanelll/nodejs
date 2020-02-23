@@ -19,6 +19,8 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.use(helmet());
 app.use(morgan("tiny"));
 
+app.set("view engine","pug");
+
 /*
 app.get("/",handleHome);
 //route, found home
@@ -30,3 +32,8 @@ app.use(routers.users, userRouter);
 app.use(routers.videos, videoRouter);
 
 export default app;
+
+/*
+VIDEO : home/search
+USER : join/login/logout
+*/ 

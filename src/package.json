@@ -2,7 +2,7 @@
   "name": "wetube",
   "version": "1.0.0",
   "description": "Cloning Youtube with Vanila and NodeJS",
-  "main": "index.js",
+  "main": "init.js",
   "author": "seyyyg",
   "dependencies": {
     "@babel/core": "^7.8.4",
