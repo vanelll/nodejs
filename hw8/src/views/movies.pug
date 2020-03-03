@@ -1,7 +1,10 @@
-extends templates/layout
-include mixins/movie
+extends layouts/main.pug
+include mixins/movieBlock.pug
 
 block content
-  h1=pageTitle
-  each movie in movies
-    +movieMixin(movie)
+    .movies
+        each item in movies
+            +movieBlock({
+                id: item.id,
+                title: item.title
+            })
