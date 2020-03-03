@@ -1,4 +1,4 @@
-import { getMovieById, getMovies, addMovie } from "./db";
+import { getMovieById, getMovies, movieAdd } from "./db";
 
 export const home = (req, res) =>
   res.render("movies", { movies: getMovies(), pageTitle: "Movies!" });
@@ -18,3 +18,9 @@ export const movieDetail = (req, res) => {
 Write the controller or controllers you need to render the form
 and to handle the submission
 */
+
+export const movieAdd = (req, res) => {
+  const {
+    body: { title, synopsis, genres }
+  } = req;
+};
