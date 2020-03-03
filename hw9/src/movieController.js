@@ -1,4 +1,4 @@
-import { getMovieById, getMovies, movieAdd } from "./db";
+import { getMovieById, getMovies, movieAdd, addMovie } from "./db";
 
 export const home = (req, res) =>
   res.render("movies", { movies: getMovies(), pageTitle: "Movies!" });
@@ -18,9 +18,22 @@ export const movieDetail = (req, res) => {
 Write the controller or controllers you need to render the form
 and to handle the submission
 */
+export const getMovie = (req, res) => {
+  res.render("add");
+};
 
-export const movieAdd = (req, res) => {
+
+export const postMovie = (req, res) => {
   const {
-    body: { title, synopsis, genres }
+    body: { title: t, synopsis: s, genres: g }
   } = req;
+  const arr = g.split(",");
+  const movie = {
+    title: t,
+    synopsis: s,
+    genres: arr
+  };
+  console.log(movie);
+  addMovie(movie);
+  res.redirect("/");
 };
