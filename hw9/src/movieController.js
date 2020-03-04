@@ -1,4 +1,4 @@
-import { getMovieById, getMovies, movieAdd, addMovie } from "./db";
+import { getMovieById, getMovies, addMovie } from "./db";
 
 export const home = (req, res) =>
   res.render("movies", { movies: getMovies(), pageTitle: "Movies!" });
@@ -21,6 +21,7 @@ and to handle the submission
 export const getMovie = (req, res) => {
   res.render("add");
 };
+
 
 
 export const postMovie = (req, res) => {
