@@ -17,5 +17,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(localsMiddleware);
 app.use("/", movieRouter);
 
-// Codesanbox does not need PORT :)
 app.listen(PORT, handleListening);
