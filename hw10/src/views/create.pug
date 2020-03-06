@@ -1,0 +1,12 @@
+extends layouts/main
+
+block content
+    h1 #{pageTitle}
+        .form-container
+            form(action="/create", method="post")
+                input(type="text",name="title",placeholder="Title")
+                input(type="number",name="year",placeholder="year")
+                input(type="number",name="rating",placeholder="rating")
+                textArea(type="text", name="synopsis", placeholder="Synopsis")
+                input(type="text", name="genres", placeholder="Genres")
+                input(type="submit", value="submit")
