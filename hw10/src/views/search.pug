@@ -1,4 +1,7 @@
 extends layouts/main
 
 block content
-    h1 search
+    h3 Searching by #{searchingBy}
+   .movies
+        each item in movies
+            h5 =item.title

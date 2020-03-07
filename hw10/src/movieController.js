@@ -16,25 +16,42 @@ export const home = async (req,res)=> {
         const movies = await Movie.find({}).sort({ _id: -1 });
         res.render("home", { pageTitle: "Home", movies });
     }catch(error){
-        console.log("📺home")
         console.log(error);
         res.redirect(routes.home);
     }
-
 };
 
-export const detailMovie= async(req,res)=>{
+export const search = async(req,res)=>{
     const {
-        params:{id}
-    }=req;
-
-        const movie= await Movie.findById(id);
-        console.log(movie);
-        res.render("detail", {pageTitle: movie.title, movie});
+        query: { rating, year }
+      } = req;
+    const searchingBy ="";
+    let movies= [];
+    try {
+        if(year){
+        movies = await Movie.find({
+          "year": { $eq: year}
+        });
+        console.log(year);
+        console.log(movies);
+        console.log("here");
+        searchingBy= "year";
+        res.render("search", { pageTitle: "Search", searchingBy, movies});
+    }else if(rating){
+        movies= await Movie.find({
+          "rating": { $gte: rating}
+        });
+        searchingBy="rating";
+        res.render("search", { pageTitle: "Search", searchingBy, movies});
+    }else{res.status(404);} 
+        }catch (error) {
+        res.status(404);
+          } 
 };
 
 
-/*
+
+
 export const createMovie = (req,res)=>{
         return res.render("create", {pageTitle: "create"});
 };
@@ -49,54 +66,69 @@ export const postMovie= async (req,res)=> {
         year,
         rating,
         synopsis,
-        genres,
+        genres:genres.split(","),
+        //꺄....해결했다...!🥰
         uploadedAt
     });
-     console.log("🔥i did post movie");
-     console.log(movie);
      res.render("detail", {pageTitle: "detail", movie});
 }; 
 
-//⛱ 장르 고쳐야 한다,,,좆같다..
-
-
 export const detailMovie = async(req,res)=>{
     const {
-        params: {id}
+        params: {id},
     }=req;
+    console.log(movie);
     const movie= await Movie.findById(id);
+    console.log(movie);
     res.render("detail", {pageTitle: "detail" ,movie});
    
 };
+
 
 export const getEditMovie =async(req,res)=>{
     const {
         params: {id}
     }=req;
-    console.log(id);
-    /*
     try {
         const movie = await Movie.findById(id);
-        res.render("editVideo", { pageTitle: `Edit ${movie.title}`, movie });
+        console.log(movie);
+        res.render("edit", { pageTitle: `Edit ${movie.title}`, movie });
       } catch (error) {
-        console.log("getEdit error⏰⏰⏰⏰⏰⏰");
-        res.redirect("home");
+
+        res.redirect(routes.home);
       }
     };
 export const postEditMovie =async(req,res)=>{
-    res.render("detail");
+    const{
+        params:{id},
+        body: {title,
+            year,
+            rating,
+            synopsis,
+            genres}
+    }=req;
+    try{
+        //여기...
+        await Movie.findOneAndUpdate({ _id: id },title,year,rating,synopsis,genres);
+        res.redirect(routes.detail(id));
+    }catch(error){
+        res.redirect(routes.home);
+    }
 };
 
-
+// post 
 
 
 export const deleteMovie = async(req,res)=>{
-    res.render("home");
+    const{
+        params: {id}
+    }=req;
+    try{
+        await Movie.findOneAndRemove({_id:id});
+    }catch(error){
+        console.log(error);
+    }res.redirect(routes.home);
 };
 
-export const search = (req,res)=>{
-  //  query: {term: searchingBy
-  //  } =req;
-};
 
-*/
+
