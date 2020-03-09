@@ -70,12 +70,13 @@ export const postMovie= async (req,res)=> {
         //꺄....해결했다...!🥰
         uploadedAt
     });
-     res.render("detail", {pageTitle: "detail", movie});
+    //맞나?! 나중에 다시 보기,,
+        res.redirect(routes.detail(movie.id));
 }; 
 
 export const detailMovie = async(req,res)=>{
     const {
-        params: {id},
+        params: {id}
     }=req;
     console.log(movie);
     const movie= await Movie.findById(id);
@@ -108,8 +109,10 @@ export const postEditMovie =async(req,res)=>{
             genres}
     }=req;
     try{
-        //여기...
-        await Movie.findOneAndUpdate({ _id: id },title,year,rating,synopsis,genres);
+        //findOneAndUpdate 특정 obj 찾으라고 하눈거,,,첨 method 잘못 씀,,
+        await Movie.findByIdAndUpdate( id, {
+            title,year,rating,synopsis,
+            genres : genres.split(".")});
         res.redirect(routes.detail(id));
     }catch(error){
         res.redirect(routes.home);
@@ -123,11 +126,8 @@ export const deleteMovie = async(req,res)=>{
     const{
         params: {id}
     }=req;
-    try{
         await Movie.findOneAndRemove({_id:id});
-    }catch(error){
-        console.log(error);
-    }res.redirect(routes.home);
+        res.redirect(routes.home);
 };
 
 
