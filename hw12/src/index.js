@@ -2,29 +2,25 @@ import express from "express";
 import request from "request";
 
 const app = express();
-const PORT = 4000;
-const handleListening= () => console.log(`Listening on: http://localhost:${PORT}`);
 
-const home = express.Router();
+app.get("/", async (req, res) => {
+  let {
+    query: { url }
+  } = req;
+  if (!url.includes("http")) url = "http://" + url;
+  request(url, (err, response) => {
+    if (err) res.send("down");
+    else if (response.statusCode <= 445) res.send("up");
+  });
+});
 
+// expected output: 42
+/*
+url query에 http 있는지 없는지! 없으면 더해줌
+request 이용해서 GET 리퀘스트,,
+less or equals than 445 return a "Up!"
+down 이면 json-> down.
+*/
 
-app.use("/", home);
-
-const options = {
-  url: "https://codesandbox.io/s/is-it-down-boilerplate-jpfu4"
-};
-
-function callback(error, response, body) {
-  if (!error && response.statusCode <= 445) {
-    const info = JSON.parse(body);
-    console.log(info.stargazers_count + " Stars");
-    console.log(info.forks_count + " Forks");
-  }
-}
-
-request(options, callback);
 // Codesanbox does not need PORT :)
 app.listen(() => console.log(`Listening!`));
-
-
-
