@@ -1,7 +1,4 @@
-extends layouts/main
-
-block content
-    .form(action=`/read`, method="post",enctype="multipart/form-data")
-        label(for="file") choose file
-        input(type="file",id="file",name="textFile", required=true, accept="text/plain")
-        input(type="submit",value="convert")
+h1=pageTitle
+form(action=`/read`, method="post",enctype="multipart/form-data")
+    input(type="file",id="file",name="textFile", required=true, accept="text/plain")
+    input(type="submit",value="convert")
