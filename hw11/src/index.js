@@ -3,22 +3,21 @@ import path from "path";
 import bodyParser from "body-parser";
 import multer from "multer";
 import fs from "fs";
-import router from "./router";
+import {home
+} from "./controllers";
 
+const PORT = 4000;
 const app = express();
 
-const upload = multer({ dest: "uploads/" });
-
- 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/",router);
 
 
-export const uploadText = upload.single("");
+const upload = multer({ dest: "uploads/" });
+app.get("/",home);
 
-const PORT = 4000;
 const handleListening= () => console.log(`Listening on: http://localhost:${PORT}`);
-
 app.listen(PORT, handleListening);
+
+export const uploadText = upload.single("textFile");

@@ -1,15 +1,15 @@
 import express from "express";
-import {} from "./router";
 const app = express();
 
 
 export const home = (req, res) => {
-  res.render("home", {pageTitle: "home"});
+  res.render("home", {pageTitle: "txt2html"});
 };
-/*
-const postUpload = (req, res) => {
+
+
+export const postUpload = (req, res) => {
    const {
      body: { file }
    } = req;
-};*/
+};
 
