@@ -3,13 +3,26 @@
   <head>
     <title>Video Player</title>
     <meta charset="UTF-8" />
+    <script
+      src="https://kit.fontawesome.com/89d2e27dd4.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
-    <video
-      width="700px"
-      src="https://serranoarevalo.github.io/notflix/9bfd1023900e31286103369c803c7ee9.ogv"
-    ></video>
+    <div id="jsVideoPlayer">
+      <video
+        width="700px"
+        src="https://serranoarevalo.github.io/notflix/9bfd1023900e31286103369c803c7ee9.ogv"
+        id="videpPlayer"
+      ></video>
+      <span> <i class="fas fa-volume-up" id="volumeBtn"></i></span>
+      <span id="currentTime"> 00:00:00</span>
+      /
+      <span id="totalTime">00:00:00</span>
+      <span><i class="fas fa-play" id="playBtn"></i></span>
+      <span><i class="fas fa-expand" id="fullScreen"></i></span>
+    </div>
     <script src="src/index.js"></script>
   </body>
 </html>
