@@ -16,8 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const upload = multer({ dest: "uploads/" });
 app.get("/",home);
+app.post("/upload",upload.single("file"), upload);
+/*
+.single(fieldname)
+
+*/
 
 const handleListening= () => console.log(`Listening on: http://localhost:${PORT}`);
 app.listen(PORT, handleListening);
 
 export const uploadText = upload.single("textFile");
+
+/*
+multer:  */

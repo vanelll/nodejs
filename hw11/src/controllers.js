@@ -7,10 +7,11 @@ export const home = (req, res) => {
 };
 
 
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
    const {
-     body: { file }
+    body: {file}
    } = req;
+   
    
 };
 
