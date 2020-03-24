@@ -31,6 +31,10 @@ function setTotalTime() {
   totalTime.innerHTML = totalTimeString;
 }
 
+function getCurrentTime() {
+    currentTime.innerHTML = formatDate(videoPlayer.currentTime);
+  }
+
 function handelPlayClick() {
   if (videoPlayer.paused) {
     videoPlayer.play();
