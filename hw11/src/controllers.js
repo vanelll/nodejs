@@ -1,17 +1,20 @@
-import express from "express";
-const app = express();
+import fs from "fs";
 
 
-export const home = (req, res) => {
+export function home(req, res){
   res.render("home", {pageTitle: "txt2html"});
-};
+}
 
 
-export const postUpload = async (req, res) => {
+export async function postUpload(req, res){
    const {
-    body: {file}
+    file
    } = req;
-   
-   
-};
+    if(file){
+    let text;
+      text= await fs.readFileSync(file.path, 'utf8');
+      res.render("upload",{text});
+    }else res.status(error);
+
+}
 
