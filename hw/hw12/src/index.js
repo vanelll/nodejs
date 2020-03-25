@@ -22,5 +22,4 @@ less or equals than 445 return a "Up!"
 down 이면 json-> down.
 */
 
-// Codesanbox does not need PORT :)
 app.listen(() => console.log(`Listening!`));
