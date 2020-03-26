@@ -4,7 +4,7 @@ import "./styles.css";
 hover 마우스 움직이면 show play bar 
 마우스 안움직이면 비디오 위에 있어도 숨기기-> mouse and the player bar 
 스페이스바로 멈춤 재생
-소리 버튼
+👽소리 버튼
 자동재생
 재생시간
 👽Use Fontawesome
@@ -27,4 +27,15 @@ function togglePlay() {
   }
 }
 
+function toggleSound() {
+    if (video.muted) {
+      soundBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      video.muted = false;
+    } else {
+      soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      video.muted = true;
+    }
+  }
+
 playBtn.addEventListener("click", togglePlay);
+soundBtn.addEventListener("click", toggleSound);
