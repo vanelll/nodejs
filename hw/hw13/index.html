@@ -10,18 +10,25 @@
   </head>
 
   <body>
-    <div id="jsVideoPlayer">
+    <div class="Container">
       <video
         width="700px"
         src="https://serranoarevalo.github.io/notflix/9bfd1023900e31286103369c803c7ee9.ogv"
-        id="videpPlayer"
+        controls
       ></video>
-      <span> <i class="fas fa-volume-up" id="volumeBtn"></i></span>
-      <span id="currentTime"> 00:00:00</span>
-      /
-      <span id="totalTime">00:00:00</span>
-      <span><i class="fas fa-play" id="playBtn"></i></span>
-      <span><i class="fas fa-expand" id="fullScreen"></i></span>
+      <div class="controls">
+        <span class="controls_one">
+          <span class="playBtn">
+            <i class="fas fa-pause"></i>
+          </span>
+        </span>
+        <span class="controls_two">
+          <span class="playTime"></span>
+          <div class="soundBtn">
+            <i class="fas fa-volume-up"></i>
+          </div>
+        </span>
+      </div>
     </div>
     <script src="src/index.js"></script>
   </body>
