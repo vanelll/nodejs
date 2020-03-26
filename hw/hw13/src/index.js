@@ -37,5 +37,15 @@ function toggleSound() {
     }
   }
 
+  function handlePlay(e) {
+    const { code } = e;
+    // console.log(key);
+    if (code === "Space") {
+      togglePlay();
+    }
+  } 
+
+
 playBtn.addEventListener("click", togglePlay);
 soundBtn.addEventListener("click", toggleSound);
+document.addEventListener("keydown", handlePlay);
