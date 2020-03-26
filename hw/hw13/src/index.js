@@ -1,83 +1,30 @@
 import "./styles.css";
+/**
+👽Play / Pause Button 
+hover 마우스 움직이면 show play bar 
+마우스 안움직이면 비디오 위에 있어도 숨기기-> mouse and the player bar 
+스페이스바로 멈춤 재생
+소리 버튼
+자동재생
+재생시간
+👽Use Fontawesome
+ */
 
-const videoContainer = document.getElementById("jsVideoPlayer");
-const videoPlayer = document.querySelector("video");
-const playBtn = document.getElementById("playBtn");
-const volumeBtn = document.getElementById("volumeBtn");
-const fullScrnBtn = document.getElementById("fullScreen");
-const currentTime = document.getElementById("currentTime");
-const totalTime = document.getElementById("totalTime");
+const videoContainer = document.querySelector(".container"),
+  video = videoContainer.querySelector("video"),
+  controls = videoContainer.querySelector(".controls"),
+  playBtn = controls.querySelector(".playBtn"),
+  time = controls.querySelector(".playTime"),
+  soundBtn = controls.querySelector(".soundBtn");
 
-const formatDate = seconds => {
-  const secondsNumber = parseInt(seconds, 10);
-  let hours = Math.floor(secondsNumber / 3600);
-  let minutes = Math.floor((secondsNumber - hours * 3600) / 60);
-  let totalSeconds = secondsNumber - hours * 3600 - minutes * 60;
-
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  if (totalSeconds < 10) {
-    totalSeconds = `0${totalSeconds}`;
-  }
-  return `${hours}:${minutes}:${totalSeconds}`;
-};
-
-function setTotalTime() {
-  const totalTimeString = formatDate(videoPlayer.duration);
-  totalTime.innerHTML = totalTimeString;
-}
-
-function getCurrentTime() {
-    currentTime.innerHTML = formatDate(videoPlayer.currentTime);
-  }
-
-function handelPlayClick() {
-  if (videoPlayer.paused) {
-    videoPlayer.play();
-    playBtn.className = "fas fa-pause";
+function togglePlay() {
+  if (video.paused) {
+    video.play();
+    playBtn.innerHTML = `<i class="fas fa-pause"></i>`;
   } else {
-    videoPlayer.pause();
-    playBtn.className = "fas fa-play";
+    video.pause();
+    playBtn.innerHTML = `<i class="fas fa-play"></i>`;
   }
 }
 
-function handleVolumeClick() {
-  if (videoPlayer.muted) {
-    videoPlayer.muted = false;
-    volumeBtn.className = "fas fa-volume-up";
-  } else {
-    videoPlayer.muted = true;
-    volumeBtn.className = "fas fa-volume-mute";
-  }
-}
-
-function exitFullScreen() {
-  fullScrnBtn.className = "fas fa-expand";
-  fullScrnBtn.addEventListener("click", goFullScreen);
-  document.webkitExitFullscreen();
-}
-
-function goFullScreen() {
-  videoContainer.webkitRequestFullscreen();
-  fullScrnBtn.className = "fas fa-compress";
-  fullScrnBtn.removeEventListener("click", goFullScreen);
-  fullScrnBtn.addEventListener("click", exitFullScreen);
-}
-
-function init() {
-  console.log(playBtn.innerHTML);
-  console.log(playBtn);
-  console.log(playBtn.className);
-  playBtn.addEventListener("click", handelPlayClick);
-  volumeBtn.addEventListener("click", handleVolumeClick);
-  fullScrnBtn.addEventListener("click", goFullScreen);
-  videoPlayer.addEventListener("loadedmetadata", setTotalTime);
-}
-
-if (videoContainer) {
-  init();
-}
+playBtn.addEventListener("click", togglePlay);
