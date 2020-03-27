@@ -3,7 +3,7 @@ import "./styles.css";
 👽Play / Pause Button 
 hover 마우스 움직이면 show play bar 
 마우스 안움직이면 비디오 위에 있어도 숨기기-> mouse and the player bar 
-스페이스바로 멈춤 재생
+👽스페이스바로 멈춤 재생
 👽소리 버튼
 자동재생
 재생시간
