@@ -1,12 +1,14 @@
 import "./styles.css";
 /**
 👽Play / Pause Button 
-hover 마우스 움직이면 show play bar 
-마우스 안움직이면 비디오 위에 있어도 숨기기-> mouse and the player bar 
+👽hover 마우스 움직이면 show play bar 마우스 안움직이면 비디오 위에 있어도 숨기기-> mouse and the player bar 
 👽스페이스바로 멈춤 재생
 👽소리 버튼
-자동재생
+👽자동재생
 재생시간
+https://www.w3schools.com/jsref/dom_obj_video.asp
+https://www.w3schools.com/tags/av_event_timeupdate.asp
+https://www.w3schools.com/jsref/prop_style_cursor.asp
 👽Use Fontawesome
  */
 
@@ -45,7 +47,18 @@ function toggleSound() {
     }
   } 
 
+  function handleTime(e){
+    const { currentTime, duration } = video;
+    const durationTime= Math.floor(duration),
+      current = Math.floor(currentTime);
+  
+      time.innerHTML= `00:${current <10? `0${current}` :current } / 00:${durationTime}`;
+    //console.log(current);
+    //console.log(durationTime);
+  }
+
 
 playBtn.addEventListener("click", togglePlay);
 soundBtn.addEventListener("click", toggleSound);
 document.addEventListener("keydown", handlePlay);
+video.addEventListener("timeupdate", handleTime);
