@@ -5,7 +5,7 @@ import "./styles.css";
 👽스페이스바로 멈춤 재생
 👽소리 버튼
 👽자동재생
-재생시간
+👽재생시간
 https://www.w3schools.com/jsref/dom_obj_video.asp
 https://www.w3schools.com/tags/av_event_timeupdate.asp
 https://www.w3schools.com/jsref/prop_style_cursor.asp
@@ -57,7 +57,19 @@ function toggleSound() {
     //console.log(durationTime);
   }
 
+  function handleCursor(){
+    videoContainer.style.cursor="default";
+    controls.style.display="";
+    setTimeout(hideCursor, 7000);
+    
+  }
+  
+  const hideCursor =(e) =>{
+    videoContainer.style.cursor= "none";
+    controls.style.display="none";
+  }
 
+videoContainer.addEventListener("mousemove",handleCursor);
 playBtn.addEventListener("click", togglePlay);
 soundBtn.addEventListener("click", toggleSound);
 document.addEventListener("keydown", handlePlay);
