@@ -1,8 +1,50 @@
 body {
   font-family: sans-serif;
+  background-color: seashell;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-video {
-  width: 100%;
-  max-width: 100%;
+.container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
+  position: relative;
+}
+
+.controls {
+  border-radius: 10px;
+  background-color: rgba(70, 70, 70, 0.5);
+  width: 600px;
+  height: 40px;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  position: absolute;
+
+  color: whitesmoke;
+  align-items: center;
+  display: flex;
+  padding: 0px 15px;
+  justify-content: space-between;
+}
+
+.container video {
+  transform: scale(1.4);
+}
+
+.controls .playBtn {
+  cursor: pointer;
+  margin: 15px;
+}
+
+.controls .controls_two {
+  display: flex;
+}
+
+.controls .soundBtn {
+  margin: 0px 20px;
 }
