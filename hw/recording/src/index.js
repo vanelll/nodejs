@@ -12,6 +12,8 @@ import "./styles.css";
  * 녹음 정지
  * 카운트다운 숫자 사라짐
  * 녹음된 파일 저장
+ * 
+ * https://w3c.github.io/mediacapture-record/#example1
  */
 
 const btn = document.querySelector("button");
@@ -24,7 +26,13 @@ navigator.mediaDevices.getUserMedia({
   audio: true
 });
 
-const startRecording = e => {};
+const startRecording = e => {
+  let recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
+  recorder.ondataavailable = e => {
+    recordedChunks.push(e.data);
+  };
+  recorder.start();
+};
 
 const toggleBtn = () => {
   if (status) {
