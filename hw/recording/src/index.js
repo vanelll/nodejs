@@ -24,7 +24,12 @@ let status = true;
 
 navigator.mediaDevices.getUserMedia({
   audio: true
-});
+})
+.then(startRecording);
+
+const gotMedia = (stream)=>{
+  
+}
 
 const startRecording = e => {
   let recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
