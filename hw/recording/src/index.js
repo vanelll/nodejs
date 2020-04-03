@@ -19,6 +19,7 @@ import "./styles.css";
 const btn = document.querySelector("button");
 const count = document.querySelector("span");
 
+let audioRecorder;
 let streamObject = null;
 let status = true;
 let recordedChunks = [];
@@ -31,26 +32,31 @@ navigator.mediaDevices
       //전역에서 사용 가능할 수 있게 외부에 선언되어있음
       streamObject= stream;
       //console.log(stream);
-      startRecording();
     });
 
 
     const startRecording = () => {
-      const audioRecorder = new MediaRecorder(streamObject);
+      if(streamObject){
+      let audioRecorder = new MediaRecorder(streamObject);
       audioRecorder.start();
-      console.log(audioRecorder);
-      //recorder.ondataavailable = e => {
-       // recordedChunks.push(e.data);
-      //};
-      //recorder.start();
+      audioRecorder.addEventListener("dataavailable", handleStreamData);
+  //setTimeout(()=> audioRecorder.stop(),1000);
+      }else console.log("nostream");
     };
+
+const stopRecording = () => {
+  audioRecorder.stop();
+};
 
 const toggleBtn = () => {
   if (status) {
     btn.innerHTML = "Stop Recording";
     startRecording();
+    status=false;
   } else {
     btn.innerHTML = "Start Recording";
+    stopRecording();
+    status= true;
   }
 };
 
