@@ -6,7 +6,7 @@ import "./styles.css";
  */
 /**
  * 🍇버튼을 누르면
- * 스탑 레코딩으로 바뀌고
+ * 🍇스탑 레코딩으로 바뀌고
  * 카운트다운/ 녹음 시작
  * 스탑 레코딩을 다시 누르면
  * 녹음 정지
@@ -21,15 +21,19 @@ const count = document.querySelector("span");
 
 let stream = null;
 let status = true;
+let recordedChunks = [];
 
-navigator.mediaDevices.getUserMedia({
-  audio: true
-})
-.then(startRecording);
+//stream ㅇㅓㄷ음
+navigator.mediaDevices
+  .getUserMedia({
+  audio: true})
+  .then(function(stream) {
+    
+  const mediaRecorder = new MediaRecorder(stream);
+ // console.log(mediaRecorder);
+  //console.log(stream);
+});
 
-const gotMedia = (stream)=>{
-  
-}
 
 const startRecording = e => {
   let recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
