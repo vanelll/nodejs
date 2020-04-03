@@ -19,29 +19,31 @@ import "./styles.css";
 const btn = document.querySelector("button");
 const count = document.querySelector("span");
 
-let stream = null;
+let streamObject = null;
 let status = true;
 let recordedChunks = [];
 
 //stream ㅇㅓㄷ음
 navigator.mediaDevices
   .getUserMedia({
-  audio: true})
-  .then(function(stream) {
-    
-  const mediaRecorder = new MediaRecorder(stream);
- // console.log(mediaRecorder);
-  //console.log(stream);
-});
+    audio: true}) //audio 권한 얻음
+    .then(function(stream) {
+      //전역에서 사용 가능할 수 있게 외부에 선언되어있음
+      streamObject= stream;
+      //console.log(stream);
+      startRecording();
+    });
 
 
-const startRecording = e => {
-  let recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
-  recorder.ondataavailable = e => {
-    recordedChunks.push(e.data);
-  };
-  recorder.start();
-};
+    const startRecording = () => {
+      const audioRecorder = new MediaRecorder(streamObject);
+      audioRecorder.start();
+      console.log(audioRecorder);
+      //recorder.ondataavailable = e => {
+       // recordedChunks.push(e.data);
+      //};
+      //recorder.start();
+    };
 
 const toggleBtn = () => {
   if (status) {
