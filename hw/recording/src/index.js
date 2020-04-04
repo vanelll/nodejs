@@ -44,6 +44,15 @@ navigator.mediaDevices
       }else console.log("nostream");
     };
 
+    const handleStreamData = (e) =>{
+      const {data: audioFile} = e;
+      const link = document.createElement("a");
+      link.href= URL.createObjectURL(audioFile);
+      link.download= "recorded.webm";
+      document.body.appendChild(link);
+      link.click();
+    };
+
 const stopRecording = () => {
   audioRecorder.stop();
 };
