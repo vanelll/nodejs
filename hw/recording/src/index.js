@@ -7,11 +7,11 @@ import "./styles.css";
 /**
  * 🍇버튼을 누르면
  * 🍇스탑 레코딩으로 바뀌고
- * 카운트다운/ 녹음 시작
- * 스탑 레코딩을 다시 누르면
- * 녹음 정지
- * 카운트다운 숫자 사라짐
- * 녹음된 파일 저장
+ * 🍇카운트다운/ 녹음 시작
+ * 🍇스탑 레코딩을 다시 누르면
+ * 🍇녹음 정지
+ * 🍇카운트다운 숫자 사라짐
+ * 🍇녹음된 파일 저장
  * 
  * https://w3c.github.io/mediacapture-record/#example1
  */
@@ -22,7 +22,8 @@ const count = document.querySelector("span");
 let audioRecorder;
 let streamObject = null;
 let status = true;
-let recordedChunks = [];
+let n;
+let countTime;
 
 //stream ㅇㅓㄷ음
 navigator.mediaDevices
@@ -35,13 +36,21 @@ navigator.mediaDevices
     });
 
 
+
     const startRecording = () => {
       if(streamObject){
       let audioRecorder = new MediaRecorder(streamObject);
       audioRecorder.start();
       audioRecorder.addEventListener("dataavailable", handleStreamData);
   //setTimeout(()=> audioRecorder.stop(),1000);
+      n=0;
+      countTime= setInterval(startCount,1000);
       }else console.log("nostream");
+    };
+
+    const startCount = () =>{
+      count.innerHTML= `recording time ${n}`;
+      n++;
     };
 
     const handleStreamData = (e) =>{
@@ -55,6 +64,8 @@ navigator.mediaDevices
 
 const stopRecording = () => {
   audioRecorder.stop();
+  clearInterval(countTime);
+  count.innerHTML=``;
 };
 
 const toggleBtn = () => {
