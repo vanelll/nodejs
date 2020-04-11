@@ -2,11 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Header = styled.header``;
+const Header = styled.header`
+  margin-bottom: 30px;
+`;
 
-const List = styled.ul``;
+const List = styled.ul`
+  display: flex;
+`;
 
-const Item = styled.li``;
+const Item = styled.li`
+  margin-left: -35px;
+  margin-right: 80px;
+  text-transform: uppercase;
+  font-weight: 700;
+  list-style-type: none;
+`;
 
 const SLink = styled(Link)``;
 
