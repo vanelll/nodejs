@@ -1,20 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Header = styled.header``;
+
+const List = styled.ul``;
+
+const Item = styled.li``;
+
+const SLink = styled(Link)``;
 
 export default () => (
-  <header>
-    <ul>
-      <li>
-        <Link to="/">🏷</Link>
-      </li>
-      <li>
-        <Link to="/exchanges">🔁</Link>
-      </li>
-      <li>
-        <Link to="/coins">💰</Link>
-      </li>
-    </ul>
-  </header>
+    <Header>
+    <List>
+      <Item>
+        <SLink to="/">🏷</SLink>
+        </Item>
+      <Item>
+        <SLink to="/exchanges">🔁</SLink>
+        </Item>
+      <Item>
+        <SLink to="/coins">💰</SLink>
+        </Item>
+    </List>
+  </Header>
 );
 
 /**
