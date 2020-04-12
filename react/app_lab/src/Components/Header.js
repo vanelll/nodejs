@@ -2,10 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
-//style-components: local
 const Header = styled.header`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const List = styled.ul`
@@ -13,8 +11,8 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  margin-left: -35px;
-  margin-right: 80px;
+  margin-top: 20px;
+  margin-right: 30px;
   text-transform: uppercase;
   font-weight: 700;
   list-style-type: none;
@@ -23,22 +21,17 @@ const Item = styled.li`
 const SLink = styled(Link)``;
 
 export default () => (
-    <Header>
+  <Header>
     <List>
       <Item>
-        <SLink to="/">🏷</SLink>
-        </Item>
+        <SLink to="/">Prices</SLink>
+      </Item>
       <Item>
-        <SLink to="/exchanges">🔁</SLink>
-        </Item>
+        <SLink to="/exchanges">Exchanges</SLink>
+      </Item>
       <Item>
-        <SLink to="/coins">💰</SLink>
-        </Item>
+        <SLink to="/coins">Coins</SLink>
+      </Item>
     </List>
   </Header>
 );
-
-/**
- * https://reacttraining.com/react-router/web/example/url-params
- * link
- */
