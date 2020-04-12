@@ -16,6 +16,8 @@ const Item = styled.li`
   text-transform: uppercase;
   font-weight: 700;
   list-style-type: none;
+  border-bottom: 3.5px solid
+    ${props => (props.current ? "#F38EA6" : "transparent")};
 `;
 
 const SLink = styled(Link)``;
@@ -23,13 +25,13 @@ const SLink = styled(Link)``;
 export default () => (
   <Header>
     <List>
-      <Item>
+      <Item current={true}>
         <SLink to="/">Prices</SLink>
       </Item>
-      <Item>
+      <Item current={false}>
         <SLink to="/exchanges">Exchanges</SLink>
       </Item>
-      <Item>
+      <Item current={false}>
         <SLink to="/coins">Coins</SLink>
       </Item>
     </List>
