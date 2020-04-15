@@ -18,22 +18,24 @@ const Item = styled.li`
   list-style-type: none;
   border-bottom: 3.5px solid
     ${props => (props.current ? "#F38EA6" : "transparent")};
+  transition: border-bottom 0.3s ease-in-out;
 `;
 
 const SLink = styled(Link)``;
 
-export default () => (
-  <Header>
-    <List>
-      <Item current={true}>
-        <SLink to="/">Prices</SLink>
-      </Item>
-      <Item current={false}>
-        <SLink to="/exchanges">Exchanges</SLink>
-      </Item>
-      <Item current={false}>
-        <SLink to="/coins">Coins</SLink>
-      </Item>
-    </List>
-  </Header>
-);
+export default withRouter(({ location: { pathname } }) => (
+    <Header>
+      <List>
+        <Item current={pathname === "/"}>
+          <SLink to="/">Prices</SLink>
+        </Item>
+        <Item current={pathname === "/exchanges"}>
+          <SLink to="/exchanges">Exchanges</SLink>
+        </Item>
+        <Item current={pathname === "/coins"}>
+          <SLink to="/coins">Coins</SLink>
+        </Item>
+      </List>
+    </Header>
+  ));
+  
