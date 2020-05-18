@@ -6,8 +6,6 @@ import {
 
 const movieRouter = express.Router();
 
-// Add your magic here!
-
 movieRouter.get(routes.home, home);
 
 movieRouter.get(routes.search,search);

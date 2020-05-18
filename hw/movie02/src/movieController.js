@@ -7,8 +7,6 @@ You can do Movie.find() or whatever you need like normal!
 import Movie from "./models/Movie";
 import routes from "./routes";
 import {} from "./movieRouter";
-// Add your magic here!
-
 
 
 export const home = async (req,res)=> {

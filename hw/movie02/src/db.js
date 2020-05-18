@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 /*
-DONT TOUCH THIS FILE <3
-WE ARE ALL SHARING THE SAME DB
-PLEASE DONT TOUCH THIS FILE
+
 */
 mongoose.connect(
   "-",
