@@ -24,5 +24,5 @@ const VideoSchema= new mongoose.Schema({
     }]
 });
 
-const model= mongoose.model("videl", VideoSchema);
+const model= mongoose.model("video", VideoSchema);
 export default model;

@@ -1,4 +1,4 @@
-
+import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
 
@@ -8,7 +8,11 @@ export const getJoin = (req, res) => {
 
 export const postJoin = async (req, res, next) => {
   const {
-    body: { name, email, password, password2 }
+    body: { 
+      name, 
+      email, 
+      password, 
+      password2 }
   } = req;
   if (password !== password2) {
     req.flash("error", "Passwords don't match");

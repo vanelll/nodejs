@@ -6,21 +6,28 @@ import {
     , getLogin
     , logout
     , postJoin
-    , postLogin
+    , postLogin,
+    githubLogin,
+    postGithubLogIn
     } from "../controllers/userController";
 
 const globalRouter = express.Router();
 
-globalRouter.get(routes.Join, postJoin);
-globalRouter.get(routes.Join, getJoin);
+globalRouter.get(routes.Join, onlyPublic, getJoin);
+globalRouter.post(routes.Join, onlyPublic, postJoin, postLogin);
 
-
-globalRouter.get(routes.login, getLogin);
-globalRouter.post(routes.login, postLogin);
+globalRouter.get(routes.login, onlyPublic, getLogin);
+globalRouter.post(routes.login, onlyPublic, postLogin);
 
 globalRouter.get(routes.home,home);
 globalRouter.get(routes.search, search);
 globalRouter.get(routes.logout, logout);
+
+globalRouter.get(routes.github, githubLogin);
+//다시,,보기,,
+globalRouter.get(routes.githubCallback, passport.authentication,
+    {failurlRedirect: "/login"} ,
+    postGithubLogIn);
  
 
 export default globalRouter;
