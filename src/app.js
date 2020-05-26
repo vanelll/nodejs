@@ -45,9 +45,9 @@ app.use(localMiddleware);
 /*
 app.get("/",handleHome);
 //route, found home
-*/
-//app.get("/profile", handleProfile);
 
+//app.get("/profile", handleProfile);
+*/
 app.use("/", globalRouter);
 app.use(routers.users, userRouter);
 app.use(routers.videos, videoRouter);
