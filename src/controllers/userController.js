@@ -49,6 +49,7 @@ export const githubLogin = passport.authenticate("github", {
 });
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
+  //사용하지 않는 parameter _, __,
   const {
     _json: { id, avatar_url: avatarUrl, name, email }
   } = profile;
