@@ -28,6 +28,8 @@ globalRouter.get(routes.github, githubLogin);
 globalRouter.get(routes.githubCallback, passport.authentication,
     {failurlRedirect: "/login"} ,
     postGithubLogIn);
+
+globalRouter.get(routes.me, getMe);
  
 
 export default globalRouter;
