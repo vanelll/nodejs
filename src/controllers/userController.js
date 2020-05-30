@@ -76,6 +76,7 @@ export const postGithubLogIn = (req, res) => {
   res.redirect(routes.home);
 };
 
+//fb login
 export const facebookLogin = passport.authenticate("facebook", {
   successFlash: "Welcome",
   failureFlash: "Can't log in at this time"

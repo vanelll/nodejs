@@ -8,7 +8,9 @@ import {
     , postJoin
     , postLogin,
     githubLogin,
-    postGithubLogIn
+    postGithubLogIn,
+    facebookLogin,
+    postFacebookLogin
     } from "../controllers/userController";
 
 const globalRouter = express.Router();
@@ -31,5 +33,9 @@ globalRouter.get(routes.githubCallback, passport.authentication,
 
 globalRouter.get(routes.me, getMe);
  
+globalRouter.get(routes.facebook, facebookLogin);
+globalRouter.get(routes.facebookCallback, 
+    passport.authentication("facebook", { failurlRedirect: "/login"}),
+    postFacebookLogin);
 
 export default globalRouter;
