@@ -3,23 +3,28 @@ const recordBtn = document.getElementById("jsRecordBtn");
 const videoPreview= document.getElementById("jsVideoPreview");
 
 let streamObject;
+let videoRecorder;
 
 const handleVideoData= (e)=> {
     //console.log(e);
 }
 
+const stopRecording= () =>{
+    videoRecorder.stop();
+    recordBtn.removeEventListener("click",stopRecording);
+    recordBtn.addEventListener("click", getVidel);
+    recordBtn.innerHTML= "start recording";
+};
+
 //stream에서 가진 video 녹화
 const startRecording = () =>{
-    const videoRecorder= new MediaRecorder(streamObject);
+    videoRecorder= new MediaRecorder(streamObject);
     //console.log(videoRecorder);
     videoRecorder.start();
     //videoRecorder.start(1000) 매 초마다 데이터 줌
     //start recording
     videoRecorder.addEventListener("dataavailable", handleVideoData);
-};
-
-const stopRecording= () =>{
-
+    recordBtn.addEventListener("click",stopRecording);
 };
 
 const getVideo= async () =>{
