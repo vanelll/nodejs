@@ -7,6 +7,12 @@ let videoRecorder;
 
 const handleVideoData= (e)=> {
     //console.log(e);
+    const {data: videoFile } = e;
+    const link = document.createElement("a");
+    link.href= URL.createObjectURL(videoFile);
+    link.download= "recorded.webm";
+    document.body.appendChild(link);
+    link.click();
 }
 
 const stopRecording= () =>{
