@@ -10,10 +10,12 @@ import session from "express-session";
 import MongoStore from "conneect-mongo";
 import { localMiddleware } from "./middlewares";
 
-import routers from "./routes";
+import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
+import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import apiRouter from "./routers/apiRouter";
 
 import "./passport";
 
@@ -49,8 +51,9 @@ app.get("/",handleHome);
 //app.get("/profile", handleProfile);
 */
 app.use("/", globalRouter);
-app.use(routers.users, userRouter);
-app.use(routers.videos, videoRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 
 export default app;
 
