@@ -6,6 +6,9 @@ import aws from "aws-sdk";
 
 const multerVideo = multer({dest: "uploads/videos/"});
 
+export const uploadVideo = multerVideo.single("videoFile");
+export const uploadAvatar = multerAvatar.single("avatar");
+
 export const localMiddleware=(req,res,next) =>{
     res.locals.siteName= 'wetube';
     res.locals.routes= routes;
