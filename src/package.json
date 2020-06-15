@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "get-blob-duration": "^1.1.1",
     "helmet": "^3.21.2",
     "mongoose": "^5.9.3",
     "morgan": "^1.9.1",
@@ -38,8 +39,10 @@
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node init.js --delay 2",
-    "dev:assets": "WEBPACK_ENV=development webpack -w",
-    "build:assets": "WEBPACK_ENV=production webpack"
+    "dev:assets": "cd src && WEBPACK_ENV=development webpack -w",
+    "build:assets": "cd src && WEBPACK_ENV=production webpack",
+    "build:server":"babel src --out-dir build --ignore 'src/assets', 'src/statics', 'src/webpack.config.js'",
+    "build":"npm run build:server && npm run build:assets"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

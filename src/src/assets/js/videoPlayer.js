@@ -1,3 +1,5 @@
+import getBlobDuration from "get-blob-duration";
+
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
 const playBtn = document.getElementById("jsPlayButton");
@@ -15,6 +17,15 @@ const registerView= () =>{
         method: "POST"
     });
 };
+
+async function setTotalTime() {
+    const blob = await fetch(videoPlayer.src).then(response => 
+        response.blob());
+    const duration= await getBlobDuration(blob);
+    const totalTimeString= FormData(duration);
+    totalTime.innerHTML = totalTimeString;
+    setInterval(getCurrentTime,1000)
+}
 
 function handleEnded() {
     registerView();
