@@ -13,9 +13,11 @@ app.get("/", (req,res)=> res.render("home"));
 const handleListening= ()=> console.log(`👽 hello : http://localhost:${PORT}`);
 
 const server = app.listen(PORT, handleListening);
-const io = socketIO(server);
+const io = socketIO.listen(server);
 
-\    /\
- )  ( ')
-(  /  )
- \(__)|
+//socket id push
+let sockets = [];
+
+io.on("connection", (socket)=> {
+    sockets.push(socket.id)
+});
