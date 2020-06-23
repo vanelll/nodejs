@@ -13,11 +13,15 @@ app.get("/", (req,res)=> res.render("home"));
 const handleListening= ()=> console.log(`👽 hello : http://localhost:${PORT}`);
 
 const server = app.listen(PORT, handleListening);
+
 const io = socketIO.listen(server);
 
-//socket id push
-let sockets = [];
-
-io.on("connection", (socket)=> {
-    sockets.push(socket.id)
+io.on("connection", socket=> {
+    socket.broadcast.emit("hello");
+    //broadcast 저ㅂ속한 ㅅ 제외한 클라이언트들ㅇ게 메시지 
+    /**
+     * socket.on("helloGuys", ()=> console.log(" client said"))'
+     * 특정 메시지 받으면 콘솔에 출력
+     * (index.js에서 보냈음)
+     */
 });
