@@ -2,6 +2,19 @@
 
 const socket = io("/");
 
-socket.on("hello", ()=> console.log("hi"));
+function sendMessage(message){
+    socket.emit("newMessage", {message});
+    console.log(`you: ${message}`);
+}
 
-socket.emit("helllllll");
+function setNickname(nickname){
+    socket.emit("set name", {nickname});
+}
+
+function handleMessageNotif(data){
+    const {message , nickname}= data;
+    console.log(`${nickname}: ${message}`);
+    
+}
+
+socket.on("messageNotif", handleMessageNotif);

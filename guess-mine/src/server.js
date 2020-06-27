@@ -17,11 +17,13 @@ const server = app.listen(PORT, handleListening);
 const io = socketIO.listen(server);
 
 io.on("connection", socket=> {
-    socket.broadcast.emit("hello");
-    //broadcast 저ㅂ속한 ㅅ 제외한 클라이언트들ㅇ게 메시지 
-    /**
-     * socket.on("helloGuys", ()=> console.log(" client said"))'
-     * 특정 메시지 받으면 콘솔에 출력
-     * (index.js에서 보냈음)
-     */
+   socket.on("newMassage", message=> {
+    socket.broadcast.emit("messageNotif", {
+        message, 
+        nickname: socket.nickname || "anon"});
+   });
+   socket.on("setNickName", ({nickname})=> {
+       socket.nickname= nickname;
+       //socket = obj, socket.potato=5 이런거도 가능
+   })
 });
