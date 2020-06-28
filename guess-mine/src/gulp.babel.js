@@ -7,5 +7,5 @@ const paths= {
 }
 
 function styles(){
-    return gulp.src()
+    return gulp.src();
 }
