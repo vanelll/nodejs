@@ -8,4 +8,4 @@ const paths= {
 
 function styles(){
     return gulp.src();
-}
+    ㅇㅗ늘까지만,,}
