@@ -13,7 +13,7 @@ const paths= {
     }
 }
 
-export function styles(){
+function styles(){
     return gulp
     .src(paths.styles.src)
     .pipe(sass())
@@ -23,11 +23,16 @@ export function styles(){
             cascade: false
         })
     )
+    .pipe(minifyCSS())
     .pipe(gulp.dest(paths.styles.dest));
     
     }
 
     function watchFiles(){
-        gulp.watch();
+        gulp.watch(paths.styles.watch, styles);
 
     }
+
+    const dev= gulp.series([styles, watchFiles]);
+
+    export default dev;
