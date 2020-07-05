@@ -16,14 +16,4 @@ const server = app.listen(PORT, handleListening);
 
 const io = socketIO.listen(server);
 
-io.on("connection", socket=> {
-   socket.on("newMassage", message=> {
-    socket.broadcast.emit("messageNotif", {
-        message, 
-        nickname: socket.nickname || "anon"});
-   });
-   socket.on("setNickName", ({nickname})=> {
-       socket.nickname= nickname;
-       //socket = obj, socket.potato=5 이런거도 가능
-   })
-});
+io.on("connection", socket=> socketController(socket));
