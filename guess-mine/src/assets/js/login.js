@@ -6,8 +6,8 @@ const LOGGED_OUT="loggedOut";
 const LOGGED_IN="loggedIn";
 
 const login = (nickname) => {
-    const socket= io("/");
-    socket.emit("setNickname", {nickname});
+    window.socket= io("/");
+    window.socket.emit(window.events.setNickname, {nickname});
 }
 
 if(nickname===null){
