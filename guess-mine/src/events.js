@@ -1,6 +1,7 @@
 const events = {
 
-    setNickname= "setNickname"
+    setNickname= "setNickname",
+    newUser= "newUser"
 
 };
 
