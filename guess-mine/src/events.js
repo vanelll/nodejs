@@ -12,4 +12,4 @@ const events = {
     strokedPath:"strokedPath"
 };
 
-export default events
+export default events;
