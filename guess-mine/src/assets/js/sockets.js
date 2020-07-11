@@ -15,4 +15,5 @@ export const initSockets = (aSocket) => {
     aSocket.on(events.disconnected, handleDisconnected);
     aSocket.on(events.newMsg, handleNewMessage);
     aSocket.on(events.beganPath, handleBeganPath);
+    aSocket.on(events.)
 };
