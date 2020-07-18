@@ -44,7 +44,7 @@ const socketController= (socket ,io)=> {
         }
         broadcast.emit(events.disconnected, {nickname:socket.nickname})
         sendPlayerUpdate();
-        //check startGame
+
         startGame();
     });
 
