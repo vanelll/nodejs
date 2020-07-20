@@ -68,6 +68,3 @@ const socketController= (socket ,io)=> {
 export default socketController;
 
 
-/*
-
- }*/
