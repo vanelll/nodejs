@@ -96,11 +96,7 @@ function handleCM(event) {
 }
 
 if (canvas) {
-  canvas.addEventListener("mousemove", onMouseMove);
-  canvas.addEventListener("mousedown", startPainting);
-  canvas.addEventListener("mouseup", stopPainting);
-  canvas.addEventListener("mouseleave", stopPainting);
-  canvas.addEventListener("click", handleCanvasClick);
+  enableCanvas();
   canvas.addEventListener("contextmenu", handleCM);
 }
 
@@ -126,4 +122,12 @@ export const disableCanvas = () => {
   canvas.removeEventListener("mouseup", stopPainting);
   canvas.removeEventListener("mouseleave", stopPainting);
   canvas.removeEventListener("click", handleCanvasClick);
-}
+};
+
+export const enableCanvas = () =>{
+  canvas.addEventListener("mousemove", onMouseMove);
+  canvas.addEventListener("mousedown", startPainting);
+  canvas.addEventListener("mouseup", stopPainting);
+  canvas.addEventListener("mouseleave", stopPainting);
+  canvas.addEventListener("click", handleCanvasClick);
+};
