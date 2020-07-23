@@ -5,6 +5,7 @@ import {chooseWord } from "./words";
 let sockets = [];
 let inProgress = false;
 let word= null;
+let leader
 
 const chooseLeader = () => sockets[Math.floor(Math.random() * sockets.length)];
 
@@ -41,7 +42,7 @@ const socketController= (socket ,io)=> {
     });
     socket.on(events.disconnect, ()=>{
         sockets = socket.filter(aSocket => aSocket.id !== socket.id);
-        if(sockets.length === 1){
+        if(sockets.length === 1 || ){
             endGame();
         }
         broadcast.emit(events.disconnected, {nickname:socket.nickname})
