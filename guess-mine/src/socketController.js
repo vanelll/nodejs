@@ -1,6 +1,6 @@
 import events from "./events";
 
-import {chooseWord } from "./words";
+import { chooseWord } from "./words";
 
 let sockets = [];
 let inProgress = false;
