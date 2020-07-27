@@ -96,8 +96,9 @@ function handleCM(event) {
 }
 
 if (canvas) {
-  enableCanvas();
+ 
   canvas.addEventListener("contextmenu", handleCM);
+  hideControls();
 }
 
 Array.from(colors).forEach(color =>
@@ -112,9 +113,11 @@ export const handleBeganPath = ({ x, y }) => beginPath(x, y);
 export const handleStrokedPath = ({ x, y, color }) => strokePath(x, y, color);
 export const handleFilled= ({color })=> fill(color);
 
-export const hideControls = () => controls.style.opacity = 0;
+export const hideControls = () => controls.style.display= "none";
 
-export const showControls = () => controls.style.opacity= 1;
+export const showControls = () => controls.style.display= "flex";
+
+export const resetCanvas = () => fill("#fff");
 
 export const disableCanvas = () => {
   canvas.removeEventListener("mousemove", onMouseMove);
