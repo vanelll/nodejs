@@ -57,8 +57,8 @@ const socketController= (socket ,io)=> {
     });
 
     socket.on(events.sendMsg , ({message})=> {
-        if(message===word){
-
+        if(message ===word){
+            superBroadcast()
         }else{
             broadcast(events.newMsg, {message,nickname:socket.nickname});
         }
