@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// eslint-disable-next-line
+import PropTypes from "prop-types"
+
+
+function Potato( {name, rating}) {
+  return (<div><h1> i like {name}</h1>
+    <h4>{rating}/ 5</h4>
+    </div>
+    );
+}
+
+Potato.propTypes = {
+  name: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired
+};
+
+const foodILike = [
+  {id:1,name: "sushi", rating:1},
+  {id:2,name: "sushii", rating:5},
+  {id:3,name: "sushiii", rating:5},
+  {id:4,name: "sushii", rating:4},
+  {id:5,name: "sushi", rating:3},
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>{foodILike.map(dish=> (
+        <Potato
+          key={dish.id}
+          name={dish.name}
+          rating= {dish.rating} />
+      ))}
+      
+      
+      </div>
   );
 }
 
