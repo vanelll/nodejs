@@ -1,40 +1,53 @@
 import React from 'react';
-// eslint-disable-next-line
-import PropTypes from "prop-types"
+import axios from "axios";
+import Movie from "./Movie";
+import "./App.css";
 
+class App extends React.Component{
+    state= {
+      isLoading= true,
+      movies:[]
+    };
 
-function Potato( {name, rating}) {
-  return (<div><h1> i like {name}</h1>
-    <h4>{rating}/ 5</h4>
-    </div>
-    );
+    getMovies  = async ()=>{
+      const {
+        data : {
+          data: { movies }
+        }
+      }= await axios.get("http://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+      this.setState({movies, isLoading : false});
+    }
+
+    componentDidMount(){
+        this.getMovies();
+      }
+
+    render(){
+      const {isLoading, movies} = this.state;
+      return (
+        <section className= "container">
+          {isLoading 
+          ? (<div className= "loader">
+            <span className="loader__text_">Loading</span>
+            </div>)
+          : (
+            movies.map(movie=> {
+                <Movie
+                  key = {movie.id} 
+                  id={movie.id} 
+                  year={movie.year} 
+                  title={movie.title} 
+                  summary={movie.summary} 
+                  poster={movie.medium_cover_image} 
+                  gerens={movie.gerens}
+                  />
+                  })
+              ) 
+              }
+       </section>
+      )
+    }  
 }
 
-Potato.propTypes = {
-  name: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
-};
-
-const foodILike = [
-  {id:1,name: "sushi", rating:1},
-  {id:2,name: "sushii", rating:5},
-  {id:3,name: "sushiii", rating:5},
-  {id:4,name: "sushii", rating:4},
-  {id:5,name: "sushi", rating:3},
-];
-
-function App() {
-  return (
-      <div>{foodILike.map(dish=> (
-        <Potato
-          key={dish.id}
-          name={dish.name}
-          rating= {dish.rating} />
-      ))}
-      
-      
-      </div>
-  );
-}
 
 export default App;
