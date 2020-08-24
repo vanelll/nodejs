@@ -18,21 +18,45 @@ loading ? (
         {nowPlaying && nowPlaying.length > 0 && (
           <Section title="Now Playing">
             {nowPlaying.map(movie => (
-              <span key={movie.id}>{movie.title}</span>
+              <Poster 
+                key={movie.id} 
+                id={movie.id}
+                title={movie.original_title} 
+                imageUrl={movie.poster_path}
+                rating={movie.vote_average}
+                year={movie.release_date.substirng(0,4)}
+                isMovie={true}
+            />
         ))}
       </Section>
     )}
     {upcoming && upcoming.length > 0 && (
       <Section title="Upcoming Movies">
         {upcoming.map(movie => (
-          <span key={movie.id}>{movie.title}</span>
+          <Poster 
+            key={movie.id} 
+            id={movie.id}
+            title={movie.original_title} 
+            imageUrl={movie.poster_path}
+            rating={movie.vote_average}
+            year={movie.release_date.substirng(0,4)}
+            isMovie={true}
+            />
         ))}
       </Section>
     )}
     {popular && popular.length > 0 && (
       <Section title="Popular Movies">
         {popular.map(movie => (
-          <span key={movie.id}>{movie.title}</span>
+          <Poster 
+            key={movie.id} 
+            id={movie.id}
+            title={movie.original_title} 
+            imageUrl={movie.poster_path}
+            rating={movie.vote_average}
+            year={movie.release_date.substirng(0,4)}
+            isMovie={true}
+            />
         ))}
       </Section>
     )}
