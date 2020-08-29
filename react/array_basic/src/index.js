@@ -1,58 +1,37 @@
-import React, {useState}  from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from "react";
 
-import "./styles.css"
+const content = [
+  {
+    tab: "Section 1",
+    content: "I'm the content of the Section 1"
+  },
+  {
+    tab: "Section 2",
+    content: "I'm the content of the Section 2"
+  }
+];
 
-function App(){
-  const [item, setItem ]= useState(1);
-  const incrementItem = () => setItem(item +1);
-  const decrementItem = () => setItem(item -1);
+const useTabs = (initialTab, allTabs) => {
+  if (!allTabs || !Array.isArray(allTabs)) {
+    return;
+  }
+  const [currentIndex, setCurrentIndex] = useState(initialTab);
+  return {
+    currentItem: allTabs[currentIndex],
+    changeItem: setCurrentIndex
+  };
+};
+
+const App = () => {
+  const { currentItem, changeItem } = useTabs(0, content);
   return (
-    <div className="App">
-      <h1> hello</h1>
-      <h3> {item}</h3>
-      <button onClick ={incrementItem}> +</button>
-      <button onClick ={decrementItem}> -</button>
+    <div>
+      {content.map((section, index) => (
+        <button onClick={() => changeItem(index)}>{section.tab}</button>
+      ))}
+      <div>{currentItem.content}</div>
     </div>
   );
-}
+};
 
-
-
-const rootElement= document.getElementById("root");
-ReactDOM.render(<App/>, rootElement);
-
-
-/*
-class !어레이! {
-  static 더하기제로 = array => {
-    const x = array.map(x => x * 10);
-    return x;
-  };
-  static 50보다큰 수 = array => {
-    const x = array.filter(x => x > 50);
-    return x;
-  };
-  static 첫번째지우기 = array => {
-    const x = array.slice(1);
-    return x;
-  };
-  static 다더하기 = x => {
-    const reducer = (acc, value) => acc + value;
-    return x.reduce(reducer);
-  };
-  static 숫자쪼개기 = x => {
-    const xx = x.toString().split("");
-    return xx;
-  };
-}
-
-output: 
-
-[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-[60, 70, 80, 90, 100]
-[70, 80, 90, 100]
-340
-["3", "4", "0"]
-
-*/
+export default App;
