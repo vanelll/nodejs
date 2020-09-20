@@ -31,3 +31,22 @@ app.get("/protected", middleware, function(req, res, next) {
 
 // Codesanbox does not need PORT :)
 app.listen(() => console.log(`Listening!`));
+
+/*
+const middleware = (req, res, next) => {
+  console.log("im a middleware");
+  next();
+};
+
+const protect = (req, res) => {
+  console.log("protected");
+  res.redirect("/");
+};
+
+app.use(middleware);
+app.get("/", (req, res) => res.send("home"));
+app.get("/about-us", (req, res) => res.send("about-us"));
+app.get("/contact", (req, res) => res.send("contact"));
+app.get("/protected", protect, (req, res) => res.send("protected"));
+
+*/
